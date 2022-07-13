@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
-    public GameObject BulletPrefab;
-    public int HeroDamage = 10;
-    public float AttackSpeed = 2f;
-    // Start is called before the first frame update
+    [SerializeField] private GameObject BulletPrefab;
+    [SerializeField] private int HeroDamage = 10;
+    [SerializeField] private float AttackSpeed = 2f;
     void Start()
     {
         StartCoroutine(Attack());
@@ -22,11 +21,5 @@ public class Hero : MonoBehaviour
         bullet.GetComponent<Bullet>().Damage = HeroDamage;
 
         StartCoroutine(Attack());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

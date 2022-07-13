@@ -4,21 +4,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    Health _health;
+    private Health _health;
 
     public int Damage { get; set; }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (_health == null)
         {
-            _health = GameObject.FindObjectOfType<Health>();
+            _health = GameObject.FindGameObjectWithTag("MonsterTag").GetComponent<Health>();
         }
         else
         {

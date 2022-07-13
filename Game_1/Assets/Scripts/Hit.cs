@@ -4,28 +4,23 @@ using UnityEngine;
 
 public class Hit : MonoBehaviour
 {
-    Game _game;
-    Player _player;
-    // Start is called before the first frame update
+    private Timer _timer;
+    private Player _player;
+    private RewardCreator _rewardCreator;
     void Start()
     {
-        _game = GameObject.FindObjectOfType<Game>();
-        _player = GameObject.FindObjectOfType<Player>();
-    }
+        _rewardCreator = GameObject.FindGameObjectWithTag("GameTag").GetComponent<RewardCreator>();
+        _timer = GameObject.FindGameObjectWithTag("GameTag").GetComponent<Timer>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _player = GameObject.FindGameObjectWithTag("PlayerTag").GetComponent<Player>();
     }
 
     void OnMouseDown()
     {
-        if (_game.IsEndGame)
+        if (_timer.IsEndGame)
             return;
-        GetComponent<Health>().GetHit(_game.PlayerDamage);
+        GetComponent<Health>().GetHit(_rewardCreator.PlayerDamage);
 
         _player.RunAttack();
-        
     }
 }

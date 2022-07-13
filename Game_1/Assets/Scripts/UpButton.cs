@@ -6,45 +6,39 @@ using TMPro;
 
 public class UpButton : MonoBehaviour
 {
-    public bool isRubin;
-    public bool isHero;
-    public GameObject HeroPrefab;
-    public GameObject UpImagePrefab;
-    public TMP_Text DamageText;
-    public TMP_Text PriceText;
+    [SerializeField] private bool isRubin;
+    [SerializeField] private bool isHero;
+    [SerializeField] private GameObject HeroPrefab;
+    [SerializeField] private GameObject UpImagePrefab;
+    [SerializeField] private TMP_Text DamageText;
+    [SerializeField] private TMP_Text PriceText;
 
-    public int Damage = 10;
-    public int Price = 100;
-    public Image ItemUpDamage;
+    [SerializeField] private int Damage = 10;
+    [SerializeField] private int Price = 100;
+    [SerializeField] private Image ItemUpDamage;
 
-    Game _game;
-    // Start is called before the first frame update
+    private RewardCreator _rewardCreator;
+    [SerializeField] private GameObject Game;
     void Start()
     {
-        _game = GameObject.FindObjectOfType<Game>();
+        _rewardCreator = Game.GetComponent<RewardCreator>();
         DamageText.text = "+" + Damage.ToString();
         PriceText.text = Price.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void UpClick()
     {
-        if (!isRubin && _game.PlayerGold >= Price
-            || isRubin && _game.PlayerRubin >= Price)
+        if (!isRubin && _rewardCreator.PlayerGold >= Price
+            || isRubin && _rewardCreator.PlayerRubin >= Price)
         {
             if (!isRubin)
-                _game.PlayerGold -= Price;
+                _rewardCreator.PlayerGold -= Price;
             else
-                _game.PlayerRubin -= Price;
+                _rewardCreator.PlayerRubin -= Price;
 
             if (isHero != true)
             {
-                _game.PlayerDamage += Damage;
+                _rewardCreator.PlayerDamage += Damage;
             }
             else
             {
