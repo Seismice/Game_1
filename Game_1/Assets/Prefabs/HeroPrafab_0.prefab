@@ -97,6 +97,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5e787745b80a146a15bde29e3ad481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletPrefab: {fileID: 8713682689921134232, guid: 145e63c6c6413f045ae25b65c9ab345f, type: 3}
+  BulletPrefab: {fileID: 7198848203922199460, guid: 145e63c6c6413f045ae25b65c9ab345f, type: 3}
   HeroDamage: 10
   AttackSpeed: 2
+  _healh:
+  - {fileID: 7735297801556463647, guid: 31fde93b18b493e41bbb13e915310c32, type: 3}
+  - {fileID: 6932626324619687157, guid: 6396cd1234ae3bf42a418f10a017b049, type: 3}
+  - {fileID: 6519864955714330634, guid: 6743ff9f378619d418acfaf32d0ee31c, type: 3}
+  - {fileID: 1220878887989806644, guid: 351918baf7762f542a58ca21421bf091, type: 3}
+  - {fileID: 1950992644072021855, guid: 26df14a419ffe9440a1027cb72bd61d9, type: 3}
+  - {fileID: 266697460502878245, guid: e8602044cad323b46b4afbb8cecf2ac8, type: 3}
+  - {fileID: 82950282688958113, guid: 357e0b247d417ed4db669c9c0065a90e, type: 3}
+  - {fileID: 5593336031565810847, guid: 117bb496ef41f5c42a6e849a4371691f, type: 3}
+  - {fileID: 8855411707984212941, guid: ea7c1b598972f534dba28b45fed4db9c, type: 3}
+  - {fileID: 4834066381886176373, guid: 6251385f2e2a6a24192e229a411a8851, type: 3}

@@ -12,12 +12,11 @@ GameObject:
   - component: {fileID: 1275701348827465285}
   - component: {fileID: 1275701348827465284}
   - component: {fileID: 1275701348827465287}
-  - component: {fileID: 1275701348827465280}
   - component: {fileID: 266697460502878246}
   - component: {fileID: 266697460502878245}
   m_Layer: 0
   m_Name: Monster_5
-  m_TagString: Untagged
+  m_TagString: MonsterTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,18 +134,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1275701348827465280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275701348827465307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bfa149643d0b2b4ba693658629a490a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &266697460502878246
 Rigidbody2D:
   serializedVersion: 4
@@ -180,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96cbb39fe9444c1468f3130473a0b0a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RubinChanse: 0
   MaxHealth: 300
   CurrentHealth: 300
   Gold: 32

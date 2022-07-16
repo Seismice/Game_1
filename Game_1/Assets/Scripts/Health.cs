@@ -4,29 +4,42 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public int RubinChanse;
-    public int MaxHealth = 100;
-    public int CurrentHealth = 100;
-    public int Gold = 90;
 
-    bool isDead;
+    [SerializeField] private int RubinChanse;
+    [SerializeField] private int MaxHealth = 100;
+    [SerializeField] private int CurrentHealth = 100;
+    [SerializeField] private int Gold = 90;
 
-    Game _game;
+    private bool isDead;
 
-
-    // Start is called before the first frame update
+    private UIManager _uIManager;
+    private RewardCreator _rewardCreator;
+    private Timer _timer;
+    private Player _player;
     void Start()
     {
-        _game = GameObject.FindObjectOfType<Game>();
-
-        _game.HealthSlider.maxValue = MaxHealth;
-        _game.HealthSlider.value = MaxHealth;
+        _uIManager.HealthSlider.maxValue = MaxHealth;
+        _uIManager.HealthSlider.value = MaxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void InitRewardCreator(RewardCreator rewardCreator)
     {
-        
+        _rewardCreator = rewardCreator;
+    }
+
+    public void InitUIManager(UIManager uIManager)
+    {
+        _uIManager = uIManager;
+    }
+
+    public void InitTimer(Timer timer)
+    {
+        _timer = timer;
+    }
+
+    public void InitPlayer(Player player)
+    {
+        _player = player;
     }
 
     public void GetHit(int damage)
@@ -39,19 +52,30 @@ public class Health : MonoBehaviour
         if (healh <= 0)
         {
             isDead = true;
-            _game.TakeGold(Gold);
+            _rewardCreator.TakeGold(Gold);
 
             int random = Random.Range(0, 100);
             if (random < RubinChanse)
-                _game.TakeRubin(1);
+                _rewardCreator.TakeRubin(1);
 
             Destroy(gameObject);
+
+            GlobalEventManager.ShowUIManager();
         }
 
         GetComponent<Animator>().SetTrigger("Hit");
 
         CurrentHealth = healh;
 
-        _game.HealthSlider.value = CurrentHealth;
+        _uIManager.HealthSlider.value = CurrentHealth;
+    }
+
+    void OnMouseDown()
+    {
+        if (_timer.IsEndGame)
+            return;
+        GetHit(_rewardCreator.PlayerDamage);
+
+        _player.RunAttack();
     }
 }

@@ -7,20 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class EndMenu : MonoBehaviour
 {
-    public TMP_Text Score;
-    public TMP_Text RecordScore;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    [SerializeField] private TMP_Text Score;
+    [SerializeField] private TMP_Text RecordScore;
+    
     public void ShowEndGame(int gold)
     {
         Score.text = gold.ToString();

@@ -4,20 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Transform AttackStartPosition;
+    [SerializeField] private Transform AttackStartPosition;
 
-    public GameObject[] AttacksPrefabs;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private GameObject[] AttacksPrefabs;
 
     public void RunAttack()
     {
