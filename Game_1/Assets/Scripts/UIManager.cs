@@ -15,8 +15,7 @@ public class UIManager : MonoBehaviour
     {
         _rewardCreator = GetComponent<RewardCreator>();
 
-        GlobalEventManager.OnUIManager = ShowUI;
-        GlobalEventManager.ShowUIManager();
+        InvokeRepeating("ShowUI", 0, 1);
     }
     public void ShowUI()
     {

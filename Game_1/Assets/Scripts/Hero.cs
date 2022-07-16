@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
-    [SerializeField] private Bullet BulletPrefab;
+    [SerializeField] private GameObject BulletPrefab;
     [SerializeField] private int HeroDamage = 10;
     [SerializeField] private float AttackSpeed = 2f;
     void Start()
@@ -16,9 +16,9 @@ public class Hero : MonoBehaviour
     {
         yield return new WaitForSeconds(AttackSpeed);
 
-        Bullet bullet = Instantiate(BulletPrefab);
+        GameObject bullet = Instantiate(BulletPrefab) as GameObject;
         bullet.transform.position = transform.position;
-        bullet.Damage = HeroDamage;
+        bullet.GetComponent<Bullet>().Damage = HeroDamage;
 
         StartCoroutine(Attack());
     }
