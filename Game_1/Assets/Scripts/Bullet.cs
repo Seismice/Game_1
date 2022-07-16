@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     private Health _health;
 
     public int Damage { get; set; }
-    
+
     void Update()
     {
         if (_health == null)
@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
                 _health.transform.position,
                 Time.deltaTime * 15);
 
-            if(Vector2.Distance(transform.position, _health.transform.position) < 0.1f)
+            if (Vector2.Distance(transform.position, _health.transform.position) < 0.1f)
             {
                 _health.GetHit(Damage);
 

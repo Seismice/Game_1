@@ -5,13 +5,16 @@ using UnityEngine;
 public class SpawnMonster : MonoBehaviour
 {
     [SerializeField] private Transform StartPosition;
-    [SerializeField] private GameObject[] MonstersPrefabs;
+    [SerializeField] private Health[] MonstersPrefabs;
     const int FREQUENCYOFMONSTERS = 5;
     private int _count;
+    [SerializeField] private RewardCreator _rewardCreator;
+    [SerializeField] private UIManager _uIManager;
+    [SerializeField] private Timer _timer;
+    [SerializeField] private Player _player;
     void Start()
     {
         SpawnNewMonster();
-
     }
 
     public void SpawnNewMonster()
@@ -25,9 +28,12 @@ public class SpawnMonster : MonoBehaviour
 
         int index = Random.Range(0, randomMaxValue);
 
-        GameObject monsterObject = Instantiate(MonstersPrefabs[index]) as GameObject;
+        Health monsterObject = Instantiate(MonstersPrefabs[index]);
+        monsterObject.InitRewardCreator(_rewardCreator);
+        monsterObject.InitUIManager(_uIManager);
+        monsterObject.InitTimer(_timer);
+        monsterObject.InitPlayer(_player);
 
         monsterObject.transform.position = StartPosition.position;
     }
-
 }

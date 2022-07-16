@@ -14,12 +14,32 @@ public class Health : MonoBehaviour
 
     private UIManager _uIManager;
     private RewardCreator _rewardCreator;
+    private Timer _timer;
+    private Player _player;
     void Start()
     {
-        _uIManager = GameObject.FindGameObjectWithTag("GameTag").GetComponent<UIManager>();
-        _rewardCreator = GameObject.FindGameObjectWithTag("GameTag").GetComponent<RewardCreator>();
         _uIManager.HealthSlider.maxValue = MaxHealth;
         _uIManager.HealthSlider.value = MaxHealth;
+    }
+
+    public void InitRewardCreator(RewardCreator rewardCreator)
+    {
+        _rewardCreator = rewardCreator;
+    }
+
+    public void InitUIManager(UIManager uIManager)
+    {
+        _uIManager = uIManager;
+    }
+
+    public void InitTimer(Timer timer)
+    {
+        _timer = timer;
+    }
+
+    public void InitPlayer(Player player)
+    {
+        _player = player;
     }
 
     public void GetHit(int damage)
@@ -39,6 +59,8 @@ public class Health : MonoBehaviour
                 _rewardCreator.TakeRubin(1);
 
             Destroy(gameObject);
+
+            GlobalEventManager.ShowUIManager();
         }
 
         GetComponent<Animator>().SetTrigger("Hit");
@@ -46,5 +68,14 @@ public class Health : MonoBehaviour
         CurrentHealth = healh;
 
         _uIManager.HealthSlider.value = CurrentHealth;
+    }
+
+    void OnMouseDown()
+    {
+        if (_timer.IsEndGame)
+            return;
+        GetHit(_rewardCreator.PlayerDamage);
+
+        _player.RunAttack();
     }
 }

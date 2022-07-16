@@ -8,7 +8,7 @@ public class UpButton : MonoBehaviour
 {
     [SerializeField] private bool isRubin;
     [SerializeField] private bool isHero;
-    [SerializeField] private GameObject HeroPrefab;
+    [SerializeField] private Hero HeroPrefab;
     [SerializeField] private GameObject UpImagePrefab;
     [SerializeField] private TMP_Text DamageText;
     [SerializeField] private TMP_Text PriceText;
@@ -17,42 +17,40 @@ public class UpButton : MonoBehaviour
     [SerializeField] private int Price = 100;
     [SerializeField] private Image ItemUpDamage;
 
-    private RewardCreator _rewardCreator;
-    [SerializeField] private GameObject Game;
+    [SerializeField] private RewardCreator Game;
+    [SerializeField] private FindCanvas Canvas;
     void Start()
     {
-        _rewardCreator = Game.GetComponent<RewardCreator>();
         DamageText.text = "+" + Damage.ToString();
         PriceText.text = Price.ToString();
     }
 
     public void UpClick()
     {
-        if (!isRubin && _rewardCreator.PlayerGold >= Price
-            || isRubin && _rewardCreator.PlayerRubin >= Price)
+        if (!isRubin && Game.PlayerGold >= Price
+            || isRubin && Game.PlayerRubin >= Price)
         {
             if (!isRubin)
-                _rewardCreator.PlayerGold -= Price;
+                Game.PlayerGold -= Price;
             else
-                _rewardCreator.PlayerRubin -= Price;
+                Game.PlayerRubin -= Price;
 
             if (isHero != true)
             {
-                _rewardCreator.PlayerDamage += Damage;
+                Game.PlayerDamage += Damage;
+                
             }
             else
             {
-                GameObject hero = Instantiate(HeroPrefab) as GameObject;
+                Hero hero = Instantiate(HeroPrefab);
                 Vector3 heroPosition = new Vector3(Random.Range(3.0f, 7.0f),
                     -1.0f, 0);
                 hero.transform.position = heroPosition;
             }
 
-
             GameObject upDamageEfect = Instantiate(UpImagePrefab) as GameObject;
 
-            Transform canvas = GameObject.Find("Canvas").transform;
-
+            Transform canvas = Canvas.transform;
             upDamageEfect.transform.SetParent(canvas);
             upDamageEfect.GetComponent<Image>().sprite = ItemUpDamage.sprite;
             
@@ -62,6 +60,8 @@ public class UpButton : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+
+            GlobalEventManager.ShowUIManager();
         }
     }
 }
